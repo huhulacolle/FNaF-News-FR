@@ -21,6 +21,7 @@ async def on_message(message):
     if message.author == client.user:
         return
 
+    # News automatique
     if (message.channel.id == 722163183409954848 or message.channel.id == 849887600327262208 or message.channel.id == 746738363427717193 or message.channel.id == 857318362652082199):
         news = translation(message.content)
         await message.delete()
