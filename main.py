@@ -1,4 +1,3 @@
-from operator import truediv
 import os
 import discord
 import requests
