@@ -1,3 +1,4 @@
+from operator import truediv
 import os
 import discord
 import requests
@@ -6,7 +7,13 @@ load_dotenv()
 
 client = discord.Client()
 
+def deleteChannelTag(text):
+    if "#" in text:
+        return text.replace("#", "")
+    return text
+
 def translation(text):
+    text = deleteChannelTag(text)
     auth_key = os.getenv('KEY')
     apiDeepl = requests.get("https://api-free.deepl.com/v2/translate?auth_key=" + auth_key + "&text=" + text +"&target_lang=FR")
     json = apiDeepl.json()
@@ -22,7 +29,8 @@ async def on_message(message):
         return
 
     # News automatique
-    if (message.channel.id == 722163183409954848 or message.channel.id == 849887600327262208 or message.channel.id == 746738363427717193 or message.channel.id == 857318362652082199):
+    if (message.channel.id == 722163183409954848 or message.channel.id == 849887600327262208 or 
+    message.channel.id == 746738363427717193 or message.channel.id == 857318362652082199 or message.channel.id == 934836304955457536):
         news = translation(message.content)
         await message.delete()
         await message.channel.send("🎶🌮  " + news + "  🌮🎶")
