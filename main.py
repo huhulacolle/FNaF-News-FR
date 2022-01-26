@@ -6,6 +6,9 @@ load_dotenv()
 
 client = discord.Client()
 
+# news, ar, ffi, merch, test
+channelId = [722163183409954848, 849887600327262208, 746738363427717193, 934836304955457536, 932742493999616080]
+
 def deleteChannelTag(text):
     if "#" in text:
         return text.replace("#", "")
@@ -18,6 +21,26 @@ def translation(text):
     json = apiDeepl.json()
     return json['translations'][0]['text']
 
+def TagChannel(id):
+    match id:
+        # news 
+        case 722163183409954848:
+            return "<@&935865359762878485>"
+        # ar 
+        case 849887600327262208:
+            return "<@&935865535638433822>"
+        # ffi 
+        case 746738363427717193:
+            return "<@&935865453807554561>"
+        # merch 
+        case 934836304955457536:
+            return "<@&935967437151686687>"
+        # test 
+        case 932742493999616080:
+            return "<@&935865603103809596>" 
+        case _:
+            return None
+
 @client.event
 async def on_ready():
     print('We have logged in as {0.user}'.format(client))
@@ -28,11 +51,13 @@ async def on_message(message):
         return
 
     # News automatique
-    if (message.channel.id == 722163183409954848 or message.channel.id == 849887600327262208 or 
-    message.channel.id == 746738363427717193 or message.channel.id == 857318362652082199 or message.channel.id == 934836304955457536):
+    if message.channel.id in channelId:
+
         news = translation(message.content)
+        tag = TagChannel(message.channel.id)
+
         await message.delete()
-        await message.channel.send("🎶🌮  " + news + "  🌮🎶")
+        await message.channel.send("🎶🌮  " + news + " " + tag + "  🌮🎶")
 
         if (message.attachments):
             for img in message.attachments:
