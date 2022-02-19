@@ -1,5 +1,6 @@
 import os
 import discord
+import random
 import requests
 from dotenv import load_dotenv
 load_dotenv()
@@ -62,6 +63,15 @@ async def on_message(message):
         if (message.attachments):
             for img in message.attachments:
                 await message.channel.send(img)
+
+    # MP
+    MP = [
+        "Je ne suis qu'un bot je ne peux pas te répondre désolé :(",
+        "k",
+    ]
+
+    if ("Direct Message" in str(message.channel)):
+        await message.channel.send(random.choice(MP))
 
 
 client.run(os.getenv('TOKEN'))
