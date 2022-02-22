@@ -68,6 +68,12 @@ async def on_message(message):
     MP = [
         "Je ne suis qu'un bot je ne peux pas te répondre désolé :(",
         "k",
+        "Parler à un bot est une perte de temps",
+        "je sais",
+        "Oofy's",
+        "Je suis une erreur",
+        "Achete toi une vie",
+        "Lilian est un furry",
     ]
 
     if ("Direct Message" in str(message.channel)):
