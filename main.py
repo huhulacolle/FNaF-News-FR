@@ -74,6 +74,12 @@ async def on_message(message):
         "Je suis une erreur",
         "Achete toi une vie",
         "Lilian est un furry",
+        "J'ai envoyé ton adresse IP au Dark net",
+        "William Afton n'était pas en tort",
+        "Michael est Springtrap",
+        "Shadow Lolbit est un Yes",
+        "Let's try with another controlled shock",
+        "Les NFTs c'est le cancer mais la NFT, y a pas mieux",
     ]
 
     if ("Direct Message" in str(message.channel)):
