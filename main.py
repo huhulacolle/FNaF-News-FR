@@ -8,7 +8,7 @@ load_dotenv()
 client = discord.Client()
 
 # news, ar, ffi, merch, test
-channelId = [722163183409954848, 849887600327262208, 746738363427717193, 934836304955457536, 932742493999616080]
+channelId = [995357878850433075, 995358682260971520, 995358418426662967, 995358782064431144, 932742493999616080]
 
 def deleteChannelTag(text):
     if "#" in text:
@@ -70,7 +70,8 @@ async def on_ready():
 async def on_message(message):
     if message.author == client.user:
         return
-
+    
+    
     # News automatique
     if message.channel.id in channelId:
         news = translation(message.content)
@@ -80,7 +81,7 @@ async def on_message(message):
 
         if (message.attachments):
             for img in message.attachments:
-                await message.channel.send(img)
+                await channel.send(img)
 
     # MP
     MP = [
