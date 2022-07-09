@@ -25,20 +25,40 @@ def translation(text):
 def TagChannel(id):
     match id:
         # news 
-        case 722163183409954848:
+        case 995357878850433075:
             return "<@&935865359762878485>"
         # ar 
-        case 849887600327262208:
+        case 995358682260971520:
             return "<@&935865535638433822>"
         # ffi 
-        case 746738363427717193:
+        case 995358418426662967:
             return "<@&935865453807554561>"
         # merch 
-        case 934836304955457536:
+        case 995358782064431144:
             return "<@&935865603103809596>"
         # test 
         case 932742493999616080:
             return "<@&935967437151686687>" 
+        case _:
+            return None
+
+def channelIdAnnounce(id):
+    match id:
+        # news 
+        case 995357878850433075:
+            return 722163183409954848
+        # ar 
+        case 995358682260971520:
+            return 849887600327262208
+        # ffi 
+        case 995358418426662967:
+            return 746738363427717193
+        # merch 
+        case 995358782064431144:
+            return 934836304955457536
+        # test 
+        case 932742493999616080:
+            return 995370251321618464
         case _:
             return None
 
@@ -53,12 +73,10 @@ async def on_message(message):
 
     # News automatique
     if message.channel.id in channelId:
-
         news = translation(message.content)
         tag = TagChannel(message.channel.id)
-
-        await message.delete()
-        await message.channel.send("🎶🌮  " + news + " " + tag + "  🌮🎶")
+        channel = client.get_channel(channelIdAnnounce(message.channel.id))
+        await channel.send("🎶🌮  " + news + " " + tag + "  🌮🎶")
 
         if (message.attachments):
             for img in message.attachments:
