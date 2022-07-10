@@ -18,7 +18,7 @@ def deleteChannelTag(text):
 def translation(text):
     text = deleteChannelTag(text)
     auth_key = os.getenv('KEY')
-    apiDeepl = requests.get("https://api-free.deepl.com/v2/translate?auth_key=" + auth_key + "&text=" + text +"&target_lang=FR")
+    apiDeepl = requests.get(f"https://api-free.deepl.com/v2/translate?auth_key={auth_key}&text={text}&target_lang=FR")
     json = apiDeepl.json()
     return json['translations'][0]['text']
 
@@ -77,7 +77,7 @@ async def on_message(message):
         news = translation(message.content)
         tag = TagChannel(message.channel.id)
         channel = client.get_channel(channelIdAnnounce(message.channel.id))
-        await channel.send("🎶🌮  " + news + " " + tag + "  🌮🎶")
+        await channel.send(f"🎶🌮  {news} {tag}  🌮🎶")
 
         if (message.attachments):
             for img in message.attachments:
