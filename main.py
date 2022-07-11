@@ -3,6 +3,7 @@ import discord
 import random
 import requests
 from dotenv import load_dotenv
+from munch import DefaultMunch
 load_dotenv()
 
 client = discord.Client()
@@ -18,9 +19,9 @@ def deleteChannelTag(text):
 def translation(text):
     text = deleteChannelTag(text)
     auth_key = os.getenv('KEY')
-    apiDeepl = requests.get(f"https://api-free.deepl.com/v2/translate?auth_key={auth_key}&text={text}&target_lang=FR")
-    json = apiDeepl.json()
-    return json['translations'][0]['text']
+    api = requests.get(f"https://api-free.deepl.com/v2/translate?auth_key={auth_key}&text={text}&target_lang=FR")
+    json = DefaultMunch.fromDict(api.json())
+    return json.translations[0].text
 
 def TagChannel(id):
     match id:
