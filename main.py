@@ -58,7 +58,6 @@ def getInfo(id):
         case _:
             return None
 
-
 @client.event
 async def on_ready():
     print('We have logged in as {0.user}'.format(client))
@@ -68,17 +67,20 @@ async def on_message(message):
     if message.author == client.user:
         return
     
-    
     # News automatique
     if message.channel.id in channelId:
         news = translation(message.content)
         info = DefaultMunch.fromDict(getInfo(message.channel.id))
         channel = client.get_channel(info.id)
-        await channel.send(f"🎶🌮  {news} {info.tag}  🌮🎶")
 
-        if (message.attachments):
-            for img in message.attachments:
-                await channel.send(img)
+        img = ""
+
+        if(message.attachments):
+            img += "\n"
+            for m in message.attachments:
+                img += f"{str(m)}\n"
+
+        await channel.send(f"🎶🌮  {news} {info.tag}  🌮🎶{img}")
 
     # MP
     MP = [
