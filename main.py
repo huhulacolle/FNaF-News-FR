@@ -83,25 +83,28 @@ async def on_message(message):
         await channel.send(f"🎶🌮  {news} {info.tag}  🌮🎶{img}")
 
     # MP
-    MP = [
-        "Je ne suis qu'un bot je ne peux pas te répondre désolé :(",
-        "k",
-        "Parler à un bot est une perte de temps",
-        "je sais",
-        "Oofy's",
-        "Je suis une erreur",
-        "Achete toi une vie",
-        "Lilian est un furry",
-        "J'ai envoyé ton adresse IP au Dark net",
-        "William Afton n'était pas en tort",
-        "Michael est Springtrap",
-        "Shadow Lolbit est un Yes",
-        "Let's try with another controlled shock",
-        "Les NFTs c'est le cancer mais la NFT, y a pas mieux",
-    ]
+    # MP = [
+    #     "Je ne suis qu'un bot je ne peux pas te répondre désolé :(",
+    #     "k",
+    #     "Parler à un bot est une perte de temps",
+    #     "je sais",
+    #     "Oofy's",
+    #     "Je suis une erreur",
+    #     "Achete toi une vie",
+    #     "Lilian est un furry",
+    #     "J'ai envoyé ton adresse IP au Dark net",
+    #     "William Afton n'était pas en tort",
+    #     "Michael est Springtrap",
+    #     "Shadow Lolbit est un Yes",
+    #     "Let's try with another controlled shock",
+    #     "Les NFTs c'est le cancer mais la NFT, y a pas mieux",
+    # ]
+    MP = "Si vous savez créer et maintenir un bot Discord, préviens le staff ! le développeur principal de ce bot a quitté ce serveur.\n"
+    MP += "Si tu veux voir le code source du bot, le voici : <https://github.com/huhulacolle/FNaF-News-FR/blob/main/main.py>"
 
     if ("Direct Message" in str(message.channel)):
-        await message.channel.send(random.choice(MP))
+        # await message.channel.send(random.choice(MP))
+        await message.channel.send(MP)
 
 
 client.run(os.getenv('TOKEN'))
