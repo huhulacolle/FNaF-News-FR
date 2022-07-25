@@ -8,6 +8,9 @@ load_dotenv()
 
 client = discord.Client()
 
+MP = "Si vous savez créer et maintenir un bot Discord, préviens le staff ! le développeur principal de ce bot a quitté ce serveur.\n"
+MP += "Si tu veux voir le code source du bot, le voici : <https://github.com/huhulacolle/FNaF-News-FR/blob/main/main.py>"
+
 # news, ar, ffi, merch, test
 channelId = [995357878850433075, 995358682260971520, 995358418426662967, 995358782064431144, 932742493999616080]
 
@@ -82,6 +85,9 @@ async def on_message(message):
 
         await channel.send(f"🎶🌮  {news} {info.tag}  🌮🎶{img}")
 
+        if (bool(random.getrandbits(1))):
+            await channel.send(MP)
+
     # MP
     # MP = [
     #     "Je ne suis qu'un bot je ne peux pas te répondre désolé :(",
@@ -99,8 +105,6 @@ async def on_message(message):
     #     "Let's try with another controlled shock",
     #     "Les NFTs c'est le cancer mais la NFT, y a pas mieux",
     # ]
-    MP = "Si vous savez créer et maintenir un bot Discord, préviens le staff ! le développeur principal de ce bot a quitté ce serveur.\n"
-    MP += "Si tu veux voir le code source du bot, le voici : <https://github.com/huhulacolle/FNaF-News-FR/blob/main/main.py>"
 
     if ("Direct Message" in str(message.channel)):
         # await message.channel.send(random.choice(MP))
