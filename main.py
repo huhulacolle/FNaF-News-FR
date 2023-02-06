@@ -19,7 +19,8 @@ def translation(text):
 
     auth_key = os.getenv('DeepL-Token')
     api = requests.get(f"https://api-free.deepl.com/v2/translate?auth_key={auth_key}&text={text}&target_lang=FR")
-    return api.json().json.translations[0].text
+    json = api.json()
+    return json["translations"][0]["text"]
 
 def getInfo(id):
     match id:
@@ -67,7 +68,7 @@ async def on_message(message):
     
     # News automatique
     if message.channel.id in channelId:
-        news = translation(message)
+        news = translation(message.content)
         info = getInfo(message.channel.id)
         channel = client.get_channel(info["id"])
 
@@ -78,7 +79,8 @@ async def on_message(message):
             for m in message.attachments:
                 img += f"{str(m)}\n"
 
-        await channel.send(f"🎶🌮  {news} {info}  🌮🎶{img}")
+        tag = info["tag"]
+        await channel.send(f"🎶🌮  {news} {tag}  🌮🎶{img}")
 
     MP = [
         "Je ne suis qu'un bot je ne peux pas te répondre désolé :(",
