@@ -17,7 +17,7 @@ def translation(text):
     if "#" in text:
         text.replace("#", "")
 
-    auth_key = os.getenv('DeepL-Token')
+    auth_key = os.getenv('DeepL_Token')
     api = requests.get(f"https://api-free.deepl.com/v2/translate?auth_key={auth_key}&text={text}&target_lang=FR")
     json = api.json()
     return json["translations"][0]["text"]
@@ -103,4 +103,4 @@ async def on_message(message):
         await message.channel.send(random.choice(MP))
 
 
-client.run(os.getenv('Discord-Token'))
+client.run(os.getenv('Discord_Token'))
